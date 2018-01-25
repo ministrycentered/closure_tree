@@ -149,6 +149,12 @@ module ClosureTree
       _ct.quoted_value(_ct_parent_id)
     end
 
+    def _ct_root_scope_sql
+      key = _ct.options[:root_scope]
+      val = read_attribute(key)
+      "#{_ct.quoted_table_name}.`#{key}` = #{val}"
+    end
+
     def _ct_id
       read_attribute(_ct.model_class.primary_key)
     end
